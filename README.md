@@ -1,2 +1,2 @@
 # app
-the app bitch
+Application
