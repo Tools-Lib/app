@@ -1,3 +1,3 @@
 <?php
-echo "This is not hack language!";
+echo "Who is root?";
 ?>
