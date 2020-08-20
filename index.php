@@ -1,1 +1,3 @@
-This is the start
+<?php
+echo "This is not hack language!";
+?>
