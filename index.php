@@ -1,3 +1,3 @@
 <?php
-echo "root is not dying";
+echo "No root traces";
 ?>
