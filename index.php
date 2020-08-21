@@ -1,3 +1,3 @@
 <?php
-echo "Who is root?";
+echo "root is not dying";
 ?>
