@@ -10,6 +10,6 @@ namespace requires\essentials\Config;
 class Page
 {
 	CONST TITLE = "Tools Library";
-	CONST VERSION = 1.0; // DEV
+	CONST VERSION = 1.1; // DEV
 }
 ?>

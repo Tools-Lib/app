@@ -1,0 +1,4 @@
+@font-face { font-family: 'Thin'; font-weight: bold; src: url('../media/font.ttf') format('truetype'); } 
+* {
+	font-family: 'Thin' !important;
+}

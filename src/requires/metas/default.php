@@ -20,6 +20,8 @@
 	<link rel="stylesheet" type="text/css" href="public/css/animate.css">
 
 	<!-- JS -->
-	<link rel="stylesheet" type="text/css" href="public/js/jquery.js">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="public/js/bootstrap.js">
 
+	<!-- Other -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
