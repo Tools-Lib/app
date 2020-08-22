@@ -1,18 +1,18 @@
 <?php
 /**
- * Library home page
+ * Login page
  * @author Ahmed
  * @copyright 2020 Tools Library
  */
 
-require_once(__DIR__."/../requires/essentials/map.php");
+require_once(__DIR__."/requires/essentials/map.php");
 use requires\essentials\Map\Map as Map;
 use requires\essentials\handlers\Handlers as Handler;
 
 require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 
-$_ENV['page'] = "Index"; // Page Name
+$_ENV['page'] = "Sign Up"; // Page Name
 
 ?>
 <!DOCTYPE html>
