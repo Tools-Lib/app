@@ -14,6 +14,9 @@ require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 
 $_ENV['page'] = "Login"; // Page Name
+$_ENV['maintenance'] = True; // Maintenance mode
+
+new Handler();
 
 ?>
 <html>
@@ -47,7 +50,7 @@ $_ENV['page'] = "Login"; // Page Name
 					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;">
 					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;">
 					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
-					<p id="logged" style="font-size: 15px;" class="p-0 text-success text-center mx-auto"></p>
+					<p id="logged" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
 					<input type="submit" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 0px !important;" id="submit" onclick="login();">
 				</div>
 			<hr class="m-0 p-0">

@@ -13,7 +13,9 @@ require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 
 $_ENV['page'] = "Sign Up"; // Page Name
+$_ENV['maintenance'] = True; // Maintenance mode
 
+new Handler();
 ?>
 <!DOCTYPE html>
 <html>
