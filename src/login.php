@@ -44,11 +44,11 @@ $_ENV['page'] = "Login"; // Page Name
 			<div class="bg-light text-center my-auto mx-auto pt-3 pb-4" style="border-radius: 2px;box-shadow: 0px 0px 10px rgba(0,0,0,0.8);z-index: 6;padding-right: 40px;padding-left: 40px;">
 				<h1 class="text-dark pt-5 pb-4 pl-5 pr-5" style="letter-spacing: 10px;">LOGIN</h1>
 				<div id="loginform" class="form-group">
-					<input type="text" name="username" id="username" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;">
-					<input type="password" name="password" required="" placeholder="Password" class="pass form-control mb-3" style="border-radius: 0px !important;">
-					<p id="logerr" class="p-0 m-0 text-danger text-center mx-auto"></p>
-					<p id="logged" class="p-0 m-0 text-success text-center mx-auto"></p>
-					<input type="submit" class="btn btn-sm pl-5 pr-5 mt-3 mb-3 btn-primary"style="border-radius: 0px !important;" id="submit" onclick="login();">
+					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;">
+					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;">
+					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
+					<p id="logged" style="font-size: 15px;" class="p-0 text-success text-center mx-auto"></p>
+					<input type="submit" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 0px !important;" id="submit" onclick="login();">
 				</div>
 			<hr class="m-0 p-0">
 			<p class="m-0 p-0 mt-4 pb-4" style="letter-spacing: 2px;font-size: 12px;">&copy; <?php echo Page::TITLE." &ndash; ".Page::VERSION;?></p>

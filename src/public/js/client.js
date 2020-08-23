@@ -3,8 +3,8 @@ function login() {
     url: "https://api.toolslib.co/accounts/login",
     method: "post",
     data: {
-      username: $(".user").val(),
-      password: $(".pass").val()
+      username: $("#user").val(),
+      password: $("#pass").val()
     },
     success: (data) => {
       if(data.body.authinticated) {
