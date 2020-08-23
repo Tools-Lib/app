@@ -7,7 +7,6 @@ function login() {
       password: $(".pass").val()
     },
     success: (data) => {
-      console.log("D")
       if(data.body.authinticated) {
         $("#logerr").html("")
         $("#logged").html("<strong>Success!</strong> you will be redirected soon");
@@ -24,3 +23,8 @@ function login() {
       }
   });
 }
+document.querySelector('#loginform').addEventListener('keyup', function (e) {
+  if (e.key == "Enter") {
+    login();
+  }
+})
