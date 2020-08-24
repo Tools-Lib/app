@@ -20,6 +20,12 @@ The official toolslib application repository.
  - UI & UX
  - Staff Page (Maybe in another repo)
  - Night Mode
+ - Comments & likes
+ - Friends
+ - Real time chat (maybe?)
+ - Shop (Here we go again..)
+ - Make sure [xRokz] do not commit and push to this repository again otherwise the styling is broken.
+ - cgi-bin for Python (maybe?)
 
 # Written in
 
@@ -38,7 +44,6 @@ Other works we use:
 - [Font-awesome]
 - [Animate.css]
 
-
 License
 ----
 * Creative Commons Attribution 4.0 International
@@ -54,3 +59,4 @@ License
 [bootstrap]: <https://getbootstrap.com/>
 [Font-awesome]: <https://fontawesome.com/>
 [Animate.css]: <https://animate.style/>
+[xrokz]: <https://github.com/xrokz>
