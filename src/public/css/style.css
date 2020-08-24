@@ -1,4 +1,6 @@
-@font-face { font-family: 'Thin'; font-weight: bold; src: url('../media/font.ttf') format('truetype'); }
+@font-face { font-family: 'Helvetica Neue'; font-weight: bold; src: url('../media/HelveticaNeue.ttf') format('truetype'); }
+@font-face { font-family: 'Helvetica Neue Bold'; font-weight: bold; src: url('../media/HelveticaNeueBold.ttf') format('truetype'); }
+@font-face { font-family: 'Helvetica Neue Thin'; font-weight: bold; src: url('../media/HelveticaNeueThin.ttf') format('truetype'); }
 * {
-	font-family: 'Thin';
+	font-family: 'Helvetica Neue Thin';
 }

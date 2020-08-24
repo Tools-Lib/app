@@ -2,6 +2,9 @@
 ├── dat
 │   ├── config.example.php
 │   ├── config.php
+│   ├── home.css
+│   ├── home_navbar.php
+│   ├── home.php
 │   └── tree.md
 ├── LICENSE
 ├── make.sh
@@ -17,7 +20,6 @@
     │   │   ├── aos.css
     │   │   ├── bootstrap.css
     │   │   ├── bootstrap.css.map
-    │   │   ├── home.css
     │   │   └── style.css
     │   ├── img
     │   │   ├── Frame 2.png
@@ -31,7 +33,9 @@
     │   │   ├── client.js
     │   │   └── jquery.js
     │   └── media
-    │       └── font.ttf
+    │       ├── HelveticaNeueBold.ttf
+    │       ├── HelveticaNeueThin.ttf
+    │       └── HelveticaNeue.ttf
     ├── register.php
     ├── requires
     │   ├── essentials
@@ -40,7 +44,6 @@
     │   │   ├── map.php
     │   │   └── sessions.php
     │   ├── headers
-    │   │   └── navbar.php
     │   └── metas
     │       └── default.php
     ├── robots.txt
@@ -49,4 +52,4 @@
     └── user
         └── u.php
 
-14 directories, 35 files
+14 directories, 38 files
