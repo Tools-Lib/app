@@ -8,25 +8,6 @@ The official toolslib application repository.
   - Sponsoring tools
   - Helping community with free/paid tools.
 
-### Todos
-
- - Login & Register system
- - User & tool search
- - Library for the available tools
- - Buy & sell
- - Free tools
- - Better styling
- - More security
- - UI & UX
- - Staff Page (Maybe in another repo)
- - Night Mode
- - Comments & likes
- - Friends
- - Real time chat (maybe?)
- - Shop (Here we go again..)
- - Make sure [xRokz] do not commit and push to this repository again otherwise the styling is broken.
- - cgi-bin for Python (maybe?)
-
 # Written in
 
 This repository is written with the following programming languages:
@@ -43,6 +24,7 @@ Other works we use:
 - [Bootstrap]
 - [Font-awesome]
 - [Animate.css]
+- [PHP cURL]
 
 License
 ----
@@ -60,3 +42,4 @@ License
 [Font-awesome]: <https://fontawesome.com/>
 [Animate.css]: <https://animate.style/>
 [xrokz]: <https://github.com/xrokz>
+[php curl]: <https://www.php.net/manual/en/book.curl.php>
