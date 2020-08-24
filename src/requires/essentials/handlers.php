@@ -23,6 +23,7 @@ class Handlers
 
 	function Maintenance(){
 		if(!in_array($_SERVER['HTTP_USER_AGENT'], Page::MAINTENANCE_UA)) {
+			http_response_code(503);
 			die("This page is not available due to maintenance improvments.");
 		}
 	}

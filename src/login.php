@@ -14,7 +14,7 @@ require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 
 $_ENV['page'] = "Login"; // Page Name
-$_ENV['maintenance'] = True; // Maintenance mode
+$_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
 
@@ -43,20 +43,25 @@ new Handler();
 	<div class="container-fluid">
 
 		<div class="row h-100">
-
+			<div class="col-12 d-flex justifiy-content-center">
+			<div class="col-4 mx-auto my-auto text-white d-none d-md-block d-lg-block d-xl-block" style="z-index:6;margin-right: -200px !important;">
+				<h1 style="font-weight: bold;background: -webkit-linear-gradient(180deg, #045de9 0%, #09c6f9 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Tools Library</h1>
+				<h4>Where you can find all the tools you want.</h4>
+			</div>
 			<div class="bg-light text-center my-auto mx-auto pt-3 pb-4" style="border-radius: 2px;box-shadow: 0px 0px 10px rgba(0,0,0,0.8);z-index: 6;padding-right: 40px;padding-left: 40px;">
 				<h1 class="text-dark pt-5 pb-4 pl-5 pr-5" style="letter-spacing: 10px;">LOGIN</h1>
 				<div id="loginform" class="form-group">
-					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;">
-					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;">
+					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
+					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
 					<p id="logged" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
-					<input type="submit" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 0px !important;" id="submit" onclick="login();">
+					<input type="submit" value="Sign in" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="login();">
 				</div>
 			<hr class="m-0 p-0">
 			<p class="m-0 p-0 mt-4 pb-4" style="letter-spacing: 2px;font-size: 12px;">&copy; <?php echo Page::TITLE." &ndash; ".Page::VERSION;?></p>
 			</div>
 
+		</div>
 		</div>
 
 	</div>

@@ -13,7 +13,7 @@ require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 
 $_ENV['page'] = "Home"; // Page Name
-$_ENV['maintenance'] = False; // Maintenance mode
+$_ENV['maintenance'] = True; // Maintenance mode
 
 new Handler();
 clearstatcache();
