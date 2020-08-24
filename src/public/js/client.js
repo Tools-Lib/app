@@ -10,9 +10,6 @@ function login() {
       if(data.body.authinticated) {
         $("#logerr").html("")
         $("#logged").html("<strong>Success!</strong> you will be redirected soon");
-      } else {
-        $("#logged").html("")
-        $("#logerr").html(data.body.errors[0].message);
       }
     }
   }).fail(data => {

@@ -9,15 +9,19 @@ require_once(__DIR__."/requires/essentials/map.php");
 use requires\essentials\Map\Map as Map;
 use requires\essentials\handlers\Handlers as Handler;
 use requires\essentials\Config\Page as Page;
+use requires\essentials\Sessions\Sessions as Session;
 
 require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
+require_once(Map::SESSIONS);
 
 $_ENV['page'] = "Login"; // Page Name
 $_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
-
+if(isset($_COOKIE['token']) && $_COOKIE['token'] != null) {
+	echo Session::GetUser();
+}
 ?>
 <html>
 <head>
@@ -54,7 +58,7 @@ new Handler();
 					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
-					<p id="logged" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
+					<p id="logged" name="logmsg" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
 					<input type="submit" value="Sign in" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="login();"><br>
 					Don't have an account? <a href="register">Sign Up</a>
 				</div>
@@ -66,7 +70,42 @@ new Handler();
 		</div>
 
 	</div>
+<script defer="" type="text/javascript">
+function login() {
+  $.ajax({
+    url: "https://api.toolslib.co/accounts/login",
+    method: "post",
+    data: {
+      username: $("#user").val(),
+      password: $("#pass").val()
+    },
+    success: (data) => {
+      if(data.body.authinticated) {
+        $("#logerr").html("")
+        $("#logged").html("<strong>Success!</strong> you will be redirected soon");
 
+		  var expires;
+	      var date = new Date();
+	      date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+	      expires = "; expires=" + date.toGMTString();
+		  document.cookie = escape("token") + "=" + escape(data.body.token) + expires + "; path=/";
+		  location.reload();
+      }
+    }
+  }).fail(data => {
+      data = data.responseJSON
+      if(!data.body.authinticated) {
+        $("#logged").html("")
+        $("#logerr").html(data.body.errors[0].message);
+      }
+  });
+}
+document.querySelector('#loginform').addEventListener('keyup', function (e) {
+  if (e.key == "Enter") {
+    login();
+  }
+})	
+</script>
 
 </body>
 </html>

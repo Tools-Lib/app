@@ -12,6 +12,7 @@ class Map
 {
 	CONST CONFIG = __DIR__."/config.php";
 	CONST HANDLERS = __DIR__."/handlers.php";
+	CONST SESSIONS = __DIR__."/sessions.php";
 	CONST DEFAULTMETA = __DIR__."/../metas/default.php";
 	// CONST NAVBAR = __DIR__."/../headers/navbar.php";
 }
