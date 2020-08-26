@@ -7,40 +7,24 @@
 
 namespace requires\essentials\Sessions;
 use requires\essentials\Config\API as API;
+use requires\essentials\handlers\Workers as Worker;
 
 class Sessions
 {
 	function GetUser(){
 
-		if (isset($_COOKIE['token'])) {
+		if (isset($_COOKIE['TL-TOKEN'])) {
 			try {
 
-				//Initialize cURL.
-				$r = curl_init();
+				$headers = array(
+                    'x-accesstoken: '.htmlspecialchars($_COOKIE["TL-TOKEN"]),
+                    'Content-Type: application/json',
+                    'Accept: application/json',
+                    'Connection: close'
+                );
 
-				// HTTP Settings
-				curl_setopt($r, CURLOPT_URL, API::ENDPOINTS['USER']);
+				$data = json_decode(Worker::GET(API::ENDPOINTS['USER'], $headers), true);
 
-				curl_setopt($r, CURLOPT_RETURNTRANSFER, true);
-
-				curl_setopt($r, CURLOPT_HTTPHEADER, array(
-				    'x-accesstoken: '.htmlspecialchars($_COOKIE["token"]),
-				    'Content-Type: application/json',
-				    'Accept: application/json',
-				    'Connection: close'
-				));
-
-				// Set CURLOPT_FOLLOWLOCATION to true to follow redirects.
-				curl_setopt($r, CURLOPT_FOLLOWLOCATION, true);
-
-				// Execute the request.
-				$data = curl_exec($r);
-				// $data = var_dump($data);
-				$data = json_decode($data, true);
-				// Close the cURL handle.
-				curl_close($r);
-
-				// Validate token and establish login session
 				if($data["status"] == "ok") {
 					self::Establish($data);
 					return true;
@@ -48,7 +32,9 @@ class Sessions
 				else {
 					self::Destroy();
 					return false;
-				}
+				}	
+
+				// Validate token and establish login session
 			} catch (Exception $e) {
 				self::Destroy();
 				return false;
@@ -67,7 +53,8 @@ class Sessions
 
 	function Destroy(){
 
-		if(setcookie("token", "", time() - 3600)){
+		if(setcookie("token", "", time() - 3600) xor setcookie("TL-SESSION", "", time() - 3600)){
+			echo "done";
 			return true;
 		}
 		else {

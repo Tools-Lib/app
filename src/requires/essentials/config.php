@@ -23,7 +23,7 @@ class API
 		'ACCOUNTS' => 'https://api.toolslib.co/accounts',
 		'LOGIN'    => 'https://api.toolslib.co/accounts/login',
 		'REGISTER' => 'https://api.toolslib.co/accounts/register',
-		'USER'     => 'https://api.toolslib.co/accounts/@me'
+		'USER'     => 'https://api.toolslib.co/users/@me'
 
 	);
 }

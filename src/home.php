@@ -8,6 +8,7 @@
 require_once(__DIR__."/requires/essentials/map.php");
 use requires\essentials\Map\Map as Map;
 use requires\essentials\handlers\Handlers as Handler;
+use requires\essentials\handlers\Workers as Worker;
 
 require_once(Map::HANDLERS);
 require_once(Map::CONFIG);

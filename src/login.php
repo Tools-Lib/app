@@ -19,7 +19,7 @@ $_ENV['page'] = "Login"; // Page Name
 $_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
-if(isset($_COOKIE['token']) && $_COOKIE['token'] != null) {
+if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
 	echo Session::GetUser();
 }
 ?>
@@ -70,42 +70,6 @@ if(isset($_COOKIE['token']) && $_COOKIE['token'] != null) {
 		</div>
 
 	</div>
-<script defer="" type="text/javascript">
-function login() {
-  $.ajax({
-    url: "https://api.toolslib.co/accounts/login",
-    method: "post",
-    data: {
-      username: $("#user").val(),
-      password: $("#pass").val()
-    },
-    success: (data) => {
-      if(data.body.authinticated) {
-        $("#logerr").html("")
-        $("#logged").html("<strong>Success!</strong> you will be redirected soon");
-
-		  var expires;
-	      var date = new Date();
-	      date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-	      expires = "; expires=" + date.toGMTString();
-		  document.cookie = escape("token") + "=" + escape(data.body.token) + expires + "; path=/";
-		  location.reload();
-      }
-    }
-  }).fail(data => {
-      data = data.responseJSON
-      if(!data.body.authinticated) {
-        $("#logged").html("")
-        $("#logerr").html(data.body.errors[0].message);
-      }
-  });
-}
-document.querySelector('#loginform').addEventListener('keyup', function (e) {
-  if (e.key == "Enter") {
-    login();
-  }
-})	
-</script>
 
 </body>
 </html>

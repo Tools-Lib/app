@@ -29,9 +29,24 @@ class Handlers
 	}
 
 }
-class Functions
+class Workers
 {
-	//
+	function GET($path, $headers = array(), $redirect = true) {
+		if($path) {
+			$request = curl_init();
+			curl_setopt($request, CURLOPT_URL, $path);
+			curl_setopt($request, CURLOPT_RETURNTRANSFER, $redirect);
+			curl_setopt($request, CURLOPT_FOLLOWLOCATION, $redirect);
+			curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
+			$response = curl_exec($request);
+			return $response;
+			curl_close($response);
+		}
+		else {
+			echo "Missing path value";
+			return false;
+		}
+	}
 }
 ?>
 
