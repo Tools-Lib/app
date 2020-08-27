@@ -11,9 +11,9 @@ use requires\essentials\handlers\Workers as Worker;
 
 class Sessions
 {
-	function GetUser(){
+	function CheckUser(){
 
-		if (isset($_COOKIE['TL-TOKEN'])) {
+		if (isset($_COOKIE['TL-TOKEN']) and $_COOKIE['TL-TOKEN'] != null) {
 			try {
 
 				$headers = array(
@@ -41,23 +41,32 @@ class Sessions
 			}
 		}
 
+		else {
+			self::Destroy();
+			return false;
+		}		
+
 	}
 
 	function Establish($data){
+
+		// Start temporary information session
 		session_name("TL-SESSION");
 		session_start();
-		$_SESSION['username'] = htmlspecialchars($data['body']['user']['username']); // Just an example this will be removed in the future
-		header("Location: /"); // Just an example
-		return true;
+
+		// Register temporary csrf-token
+		$_SESSION['token'] = bin2hex(random_bytes(32));
+
+		die(header("location:/"));
+
 	}
 
 	function Destroy(){
 
-		if(setcookie("token", "", time() - 3600) xor setcookie("TL-SESSION", "", time() - 3600)){
-			echo "done";
+		if(setcookie("TL-TOKEN", "", time() - 3600) and setcookie("TL-SESSION", "", time() - 3600)){
 			return true;
 		}
-		else {
+		else{
 			return false;
 		}
 

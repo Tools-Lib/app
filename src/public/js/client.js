@@ -69,7 +69,8 @@ function login() {
     },
     success: (data) => {
       if(data.body.authinticated) {
-        $("#logerr").html("")
+        $("#logerr").html("");
+        $("#submit").remove();
         $("#logged").html(loader);
       var expires;
         var date = new Date();
@@ -87,8 +88,41 @@ function login() {
       }
   });
 }
+
+function register() {
+  $.ajax({
+    url: "https://api.toolslib.co/accounts/join",
+    method: "post",
+    data: {
+      username: $("#user").val(),
+      password: $("#pass").val()
+    },
+    success: (data) => {
+      if(data.body.authinticated) {
+        $("#logerr").html("");
+        $("#submit").remove();
+        $("#logged").html(loader);
+      var expires;
+        var date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+      document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
+      location.reload();
+      }
+    }
+  }).fail(data => {
+      data = data.responseJSON
+      if(!data.body.authinticated) {
+        $("#logged").html("")
+        $("#logerr").html(data.body.errors[0].message);
+      }
+  });
+}
+
+
+
 try {
-document.querySelector('#loginform').addEventListener('keyup', function (e) {
+document.querySelector('#form').addEventListener('keyup', function (e) {
   if (e.key == "Enter") {
     login();
   }

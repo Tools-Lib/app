@@ -19,9 +19,7 @@ $_ENV['page'] = "Login"; // Page Name
 $_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
-if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
-	echo Session::GetUser();
-}
+Session::CheckUser();
 ?>
 <html>
 <head>
@@ -54,12 +52,12 @@ if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
 			</div>
 			<div class="bg-light text-center my-auto mx-auto pt-3 pb-4" style="border-radius: 2px;box-shadow: 0px 0px 10px rgba(0,0,0,0.8);z-index: 6;padding-right: 40px;padding-left: 40px;">
 				<h1 class="text-dark pt-5 pb-4 pl-5 pr-5" style="letter-spacing: 12.9px;">LOGIN</h1>
-				<div id="loginform" class="form-group">
+				<div id="form" class="form-group">
 					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
-					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
-					<p id="logged" name="logmsg" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
-					<input type="submit" value="Sign in" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="login();"><br>
+					<p id="logerr" style="font-size: 13px;" class="text-danger text-center mx-auto"></p>
+					<p id="logged" name="logmsg" style="font-size: 13px;" class="p-0 text-success text-center mx-auto mb-0 pb-0"></p>
+					<input type="submit" value="Sign in" id="submit" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="login();"><br>
 					Don't have an account? <a href="register">Sign Up</a>
 				</div>
 			<hr class="m-0 p-0">

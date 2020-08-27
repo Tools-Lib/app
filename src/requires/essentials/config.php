@@ -22,8 +22,9 @@ class API
 		'ENDPOINT' => 'https://api.toolslib.co',
 		'ACCOUNTS' => 'https://api.toolslib.co/accounts',
 		'LOGIN'    => 'https://api.toolslib.co/accounts/login',
-		'REGISTER' => 'https://api.toolslib.co/accounts/register',
-		'USER'     => 'https://api.toolslib.co/users/@me'
+		'REGISTER' => 'https://api.toolslib.co/accounts/join',
+		'USER'     => 'https://api.toolslib.co/users/@me',
+		'USERS'    => 'https://api.toolslib.co/users/'
 
 	);
 }
