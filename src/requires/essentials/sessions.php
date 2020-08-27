@@ -11,9 +11,9 @@ use requires\essentials\handlers\Workers as Worker;
 
 class Sessions
 {
-	function CheckUser(){
+	function CheckToken(){
 
-		if (isset($_COOKIE['TL-TOKEN']) and $_COOKIE['TL-TOKEN'] != null) {
+		if (Worker::CheckTokenCookie()) {
 			try {
 
 				$headers = array(
@@ -26,12 +26,26 @@ class Sessions
 				$data = json_decode(Worker::GET(API::ENDPOINTS['USER'], $headers), true);
 
 				if($data["status"] == "ok") {
-					self::Establish($data);
-					return true;
+					if(isset($_ENV['UserPage']) && $_ENV['UserPage']) {
+						if(!Worker::CheckSessionCookie()){
+							self::GenerateSessionToken();
+						}
+						return true;
+					}
+					else {
+						self::Establish($data);
+					}
 				}
 				else {
-					self::Destroy();
-					return false;
+					if($data['status'] == "fail") {
+						die(json_encode($data['body'], true));
+						return true;
+					}
+					else {
+						self::Destroy();
+						return false;
+					}
+					
 				}	
 
 				// Validate token and establish login session
@@ -48,22 +62,35 @@ class Sessions
 
 	}
 
+	function GenerateSessionToken() {
+			// Start temporary information session
+			session_name("TL-SESSION");
+			session_start();
+
+			// Register temporary csrf-token
+			$_SESSION['token'] = bin2hex(random_bytes(32));
+	}
+
 	function Establish($data){
+		if (Worker::CheckTokenCookie()) {
 
-		// Start temporary information session
-		session_name("TL-SESSION");
-		session_start();
+			self::GenerateSessionToken();
+			die(header("location:/@me"));
 
-		// Register temporary csrf-token
-		$_SESSION['token'] = bin2hex(random_bytes(32));
-
-		die(header("location:/"));
+		}
+		else {
+			self::Destroy();
+			header("Location:/login");
+		}
 
 	}
 
-	function Destroy(){
+	function Destroy($redirect = false){
 
 		if(setcookie("TL-TOKEN", "", time() - 3600) and setcookie("TL-SESSION", "", time() - 3600)){
+			if($redirect) {
+				header("Location:/");
+			}
 			return true;
 		}
 		else{

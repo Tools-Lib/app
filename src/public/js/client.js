@@ -77,6 +77,7 @@ function login() {
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toGMTString();
       document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
+      setTimeout(() => {}, 350);
       location.reload();
       }
     }
@@ -108,6 +109,7 @@ function register() {
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         expires = "; expires=" + date.toGMTString();
       document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
+      setTimeout(() => {}, 350);
       location.reload();
       }
     }
@@ -123,14 +125,17 @@ function register() {
 
 
 try {
-document.querySelector('#form').addEventListener('keyup', function (e) {
-  if (e.key == "Enter") {
-    register();
-  }
-})  
-document.querySelector('#form').addEventListener('keyup', function (e) {
+document.querySelector('#formLogin').addEventListener('keyup', function (e) {
   if (e.key == "Enter") {
     login();
+  }
+})    
+}
+catch(e){}
+try{
+  document.querySelector('#formRegister').addEventListener('keyup', function (e) {
+  if (e.key == "Enter") {
+    register();
   }
 })  
 }

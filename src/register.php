@@ -19,9 +19,7 @@ $_ENV['page'] = "Sign Up"; // Page Name
 $_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
-if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
-	Session::CheckUser();
-}
+Session::CheckToken();
 ?>
 <html>
 <head>
@@ -54,7 +52,7 @@ if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
 			</div>
 			<div class="bg-light text-center my-auto mx-auto pt-3 pb-4" style="border-radius: 2px;box-shadow: 0px 0px 10px rgba(0,0,0,0.8);z-index: 6;padding-right: 40px;padding-left: 40px;">
 				<h1 class="text-dark pt-5 pb-4 pl-5 pr-5" style="letter-spacing: 0px;">REGISTER</h1>
-				<div id="form" class="form-group">
+				<div id="formRegister" class="form-group">
 					<input type="text" name="email" id="email" required="" placeholder="Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<input type="text" name="username" id="user" required="" placeholder="Username" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">

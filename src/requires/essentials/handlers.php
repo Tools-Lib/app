@@ -7,6 +7,7 @@
 
 namespace requires\essentials\handlers;
 use requires\essentials\Config\Page as Page;
+use requires\essentials\Sessions\Sessions as Session;
 
 class Handlers
 {
@@ -14,6 +15,12 @@ class Handlers
 	function __construct() {
 		if(isset($_ENV['maintenance']) && $_ENV['maintenance']) {
 			$this->Maintenance();
+		}
+		if(isset($_ENV['UserPage']) && $_ENV['UserPage']) {
+			if(!Session::CheckToken()){
+				Session::Destroy(true);
+			}
+			// die(header("Location: /login"));
 		}
 	}
 
@@ -44,6 +51,23 @@ class Workers
 		}
 		else {
 			echo "Missing path value";
+			return false;
+		}
+	}
+
+	function CheckTokenCookie() {
+		if (isset($_COOKIE['TL-TOKEN']) and $_COOKIE['TL-TOKEN'] != null) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	function CheckSessionCookie() {
+		if (isset($_COOKIE['TL-SESSION']) and $_COOKIE['TL-SESSION'] != null) {
+			return true;
+		}
+		else{
 			return false;
 		}
 	}
