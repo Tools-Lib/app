@@ -17,7 +17,7 @@ class Sessions
 			try {
 
 				$headers = array(
-                    'x-accesstoken: '.htmlspecialchars($_COOKIE["TL-TOKEN"]),
+                    'X-AccessToken: '.htmlspecialchars($_COOKIE["TL-TOKEN"]),
                     'Content-Type: application/json',
                     'Accept: application/json',
                     'Connection: close'

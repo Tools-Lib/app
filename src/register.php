@@ -55,12 +55,14 @@ if(isset($_COOKIE['TL-TOKEN']) && $_COOKIE['TL-TOKEN'] != null) {
 			<div class="bg-light text-center my-auto mx-auto pt-3 pb-4" style="border-radius: 2px;box-shadow: 0px 0px 10px rgba(0,0,0,0.8);z-index: 6;padding-right: 40px;padding-left: 40px;">
 				<h1 class="text-dark pt-5 pb-4 pl-5 pr-5" style="letter-spacing: 0px;">REGISTER</h1>
 				<div id="form" class="form-group">
-					<input type="text" name="username" id="user" required="" placeholder="Username, Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
+					<input type="text" name="email" id="email" required="" placeholder="Email Address" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
+					<input type="text" name="username" id="user" required="" placeholder="Username" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<input type="password" id="pass" name="password" required="" placeholder="Password" class="form-control mb-3" style="border-radius: 0px !important;border-top: none;border-left: none;border-right: none;background-color: transparent;border-color: #333;box-shadow: 0px 1px 0px rgba(0,0,0,0.2)">
 					<p id="logerr" style="font-size: 13px;" class="p-0 m-0 text-danger text-center mx-auto"></p>
 					<p id="logged" style="font-size: 13px;" class="p-0 text-success text-center mx-auto"></p>
-					<input type="submit" value="Sign up" class="btn btn-sm pl-5 pr-5 mb-3 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="register();"><br>
-					Already a member? <a href="login">Login</a>
+					<input type="submit" value="Sign up" class="btn btn-sm pl-5 pr-5 mb-3 mt-2 btn-primary"style="border-radius: 1px !important;box-shadow: 0px 1px 2px rgba(0,0,0,0.45);text-transform: uppercase;" id="submit" onclick="register();"><br>
+					<p style="font-size: 10px;vertical-align: middle;font-family: Helvetica Neue Bold;width: 50%;" class="d-inline text-left">By continuing you agree to our <a href="tos" target="_blank" style="font-family: Helvetica Neue Bold;">Privacy Policy</a> and</p><br>
+					<p style="font-size: 10px;vertical-align: middle;font-family: Helvetica Neue Bold;width: 50%;" class="d-inline text-left"><a href="tos" target="_blank" style="font-family: Helvetica Neue Bold;">Terms of Use</a>.</p>
 				</div>
 			<hr class="m-0 p-0">
 			<p class="m-0 p-0 mt-4 pb-4" style="letter-spacing: 2px;font-size: 12px;">&copy; <?php echo Page::TITLE." &ndash; ".Page::VERSION;?></p>

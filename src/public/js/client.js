@@ -94,11 +94,12 @@ function register() {
     url: "https://api.toolslib.co/accounts/join",
     method: "post",
     data: {
+      email: $("#email").val(),
       username: $("#user").val(),
       password: $("#pass").val()
     },
     success: (data) => {
-      if(data.body.authinticated) {
+      if(data.body.authenticated) {
         $("#logerr").html("");
         $("#submit").remove();
         $("#logged").html(loader);
@@ -112,7 +113,7 @@ function register() {
     }
   }).fail(data => {
       data = data.responseJSON
-      if(!data.body.authinticated) {
+      if(!data.body.authenticated) {
         $("#logged").html("")
         $("#logerr").html(data.body.errors[0].message);
       }
@@ -122,6 +123,11 @@ function register() {
 
 
 try {
+document.querySelector('#form').addEventListener('keyup', function (e) {
+  if (e.key == "Enter") {
+    register();
+  }
+})  
 document.querySelector('#form').addEventListener('keyup', function (e) {
   if (e.key == "Enter") {
     login();
