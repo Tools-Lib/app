@@ -11,6 +11,7 @@ use requires\essentials\handlers\Workers as Worker;
 
 class Sessions
 {
+
 	function CheckToken(){
 
 		if (Worker::CheckTokenCookie()) {
@@ -30,7 +31,8 @@ class Sessions
 						if(!Worker::CheckSessionCookie()){
 							self::GenerateSessionToken();
 						}
-						return true;
+						$_ENV['data'] = $data;
+						return $_ENV['data'];
 					}
 					else {
 						self::Establish($data);

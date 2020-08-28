@@ -16,7 +16,7 @@ require_once(Map::CONFIG);
 require_once(Map::SESSIONS);
 
 $_ENV['page'] = "Profile"; // Page Name
-$_ENV['maintenance'] = True; // Maintenance mode
+$_ENV['maintenance'] = False; // Maintenance mode
 $_ENV['UserPage'] = True;
 
 new Handler();
@@ -29,6 +29,12 @@ new Handler();
 
 </head>
 <body>
-
+<!-- 	Username: <?php echo $_ENV['data']['body']['user']['username']; ?><br>
+	Email: <?php echo $_ENV['data']['body']['user']['email']; ?><br>
+	Last logged: <?php echo $_ENV['data']['body']['user']['last_login']; ?><br>
+	Created: <?php echo $_ENV['data']['body']['user']['created_at']; ?> -->
+	<?php foreach ($_ENV['data']['body']['user'] as $key => $value) {
+		echo "$key"." ".$value."<br>";
+	} ?>
 </body>
 </html>
