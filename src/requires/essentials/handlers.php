@@ -18,17 +18,17 @@ class Handlers
 		}
 		if(isset($_ENV['UserPage']) && $_ENV['UserPage']) {
 			if(!Session::CheckToken()){
-				Session::Destroy(true);
+				Session::Destroy(true, "/login");
 			}
 			// die(header("Location: /login"));
 		}
 	}
 
-	function Title(){
+	public static function Title(){
 		return htmlspecialchars($_ENV['page'])." &mdash; ".Page::TITLE;
 	}
 
-	function Maintenance(){
+	private static function Maintenance(){
 		if(!in_array($_SERVER['HTTP_USER_AGENT'], Page::MAINTENANCE_UA)) {
 			http_response_code(503);
 			die("This page is not available due to maintenance improvments.");
@@ -38,7 +38,7 @@ class Handlers
 }
 class Workers
 {
-	function GET($path, $headers = array(), $redirect = true) {
+	public static function GET($path, $headers = array(), $redirect = true) {
 		if($path) {
 			$request = curl_init();
 			curl_setopt($request, CURLOPT_URL, $path);
@@ -46,8 +46,8 @@ class Workers
 			curl_setopt($request, CURLOPT_FOLLOWLOCATION, $redirect);
 			curl_setopt($request, CURLOPT_HTTPHEADER, $headers);
 			$response = curl_exec($request);
+			curl_close($request);
 			return $response;
-			curl_close($response);
 		}
 		else {
 			echo "Missing path value";
@@ -55,7 +55,7 @@ class Workers
 		}
 	}
 
-	function CheckTokenCookie() {
+	public static function CheckTokenCookie() {
 		if (isset($_COOKIE['TL-TOKEN']) and $_COOKIE['TL-TOKEN'] != null) {
 			return true;
 		}
@@ -63,7 +63,7 @@ class Workers
 			return false;
 		}
 	}
-	function CheckSessionCookie() {
+	public static function CheckSessionCookie() {
 		if (isset($_COOKIE['TL-SESSION']) and $_COOKIE['TL-SESSION'] != null) {
 			return true;
 		}

@@ -1,6 +1,6 @@
 <?php
 /**
- * Profile page
+ * Logout
  * @author Ahmed
  * @copyright 2020 Tools Library
  */
