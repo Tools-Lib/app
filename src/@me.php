@@ -33,8 +33,12 @@ new Handler();
 	Email: <?php echo $_ENV['data']['body']['user']['email']; ?><br>
 	Last logged: <?php echo $_ENV['data']['body']['user']['last_login']; ?><br>
 	Created: <?php echo $_ENV['data']['body']['user']['created_at']; ?> -->
-	<?php foreach ($_ENV['data']['body']['user'] as $key => $value) {
+<!-- 	<?php foreach ($_ENV['data']['body']['user'] as $key => $value) {
 		echo "$key"." ".$value."<br>";
-	} ?>
+	} ?> -->
+
+	<a href="/@me/edit" class="btn btn-primary btn-sm">Edit Profile</a>
+	<a href="/@me/password" class="btn btn-primary btn-sm">Change Password</a>
+
 </body>
 </html>

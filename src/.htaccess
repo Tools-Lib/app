@@ -3,10 +3,27 @@ Options -Indexes
 Options -MultiViews
 Options +FollowSymLinks
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule !.*\.php$ %{REQUEST_FILENAME}.php [QSA,L]
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule !.*\.html$ %{REQUEST_FILENAME}.html [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R] # <- for test, for prod use [L,R=301]
+
+# Always use HTTPS
+
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove php & html extensions
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirects without URI changes
+
+RewriteRule ^@me/edit /script?edit=true [L]
+RewriteRule ^@me/password /script?edit=true [L]
+
+# HTTP Custom errors
 
 ErrorDocument 404 "404 not found"
 ErrorDocument 403 "403 forbidden access"

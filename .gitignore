@@ -3,3 +3,4 @@ dat/config.example.php
 src/requires/essentials/config.php
 src/script.php
 make.sh
+make
