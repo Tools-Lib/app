@@ -1,0 +1,4 @@
+<If "%{THE_REQUEST} =~ m#^GET /@me/password# || %{THE_REQUEST} =~ m#^GET /@me/edit#">
+    Allow from All
+    Satisfy Any
+</If>

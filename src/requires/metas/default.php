@@ -14,10 +14,10 @@
 	<meta name="description" content="Tools Library">
 
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="public/css/style.css?s=<?php echo date('r', time());?>">
-	<link rel="stylesheet" type="text/css" href="public/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="public/css/aos.css">
-	<link rel="stylesheet" type="text/css" href="public/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/style.css?s=<?php echo date('r', time());?>">
+	<link rel="stylesheet" type="text/css" href="/public/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/aos.css">
+	<link rel="stylesheet" type="text/css" href="/public/css/animate.css">
 
 	<!-- JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

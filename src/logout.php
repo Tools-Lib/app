@@ -11,5 +11,5 @@ use requires\essentials\Sessions\Sessions as Session;
 
 require_once(Map::SESSIONS);
 
-die(Session::Destroy(true));
+die(Session::Destroy(true, "/login"));
 ?>

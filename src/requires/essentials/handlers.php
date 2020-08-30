@@ -63,6 +63,7 @@ class Workers
 			return false;
 		}
 	}
+
 	public static function CheckSessionCookie() {
 		if (isset($_COOKIE['TL-SESSION']) and $_COOKIE['TL-SESSION'] != null) {
 			return true;
@@ -71,6 +72,34 @@ class Workers
 			return false;
 		}
 	}
+
+	public static function CheckUserData() {
+		if(isset($_ENV['data']) && $_ENV['data'] != "" && $_ENV['data'] != null) {
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public static function User($scope = null) {
+		if (self::CheckUserData() && $scope == null) {
+			return $_ENV['data'];
+		}
+		elseif(self::CheckUserData() && $scope == "username") {
+			return $_ENV['data']['body']['user']['username'];
+		}
+		elseif(self::CheckUserData() && $scope == "email") {
+			return $_ENV['data']['body']['user']['email'];
+		}
+		elseif(self::CheckUserData() && $scope == "last_login") {
+			return $_ENV['data']['body']['user']['last_login'];
+		}
+		elseif(self::CheckUserData() && $scope == "created") {
+			return $_ENV['data']['body']['user']['created_at'];
+		}		
+	}
+
 }
 ?>
 

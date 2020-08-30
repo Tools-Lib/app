@@ -1,31 +1,43 @@
+DefaultType application/x-httpd-php
 DirectoryIndex home.php index.php
 Options -Indexes
 Options -MultiViews
 Options +FollowSymLinks
 RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/$ /$1 [L,R] # <- for test, for prod use [L,R=301]
+
+# Remove trailing slash
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)/$ /$1 [L,R] # <- for test, for prod use [L,R=301]
 
 # Always use HTTPS
 
-RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+	RewriteCond %{HTTPS} !on
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Remove php & html extensions
 
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $1.html [NC,L]
+	## PHP
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+	## HTML
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^([^\.]+)$ $1.html [NC,L]
 
 # Redirects without URI changes
 
-RewriteRule ^@me/edit /script?edit=true [L]
-RewriteRule ^@me/password /script?edit=true [L]
+
+	## Profile (@me) redirections
+	
+	RewriteRule ^@me/edit.php$ /requires/subfiles/profile_edit [L]
+	RewriteRule ^@me/password.php$ /requires/subfiles/account_password [L]
 
 # HTTP Custom errors
 
-ErrorDocument 404 "404 not found"
-ErrorDocument 403 "403 forbidden access"
-ErrorDocument 400 "400 bad request"
-ErrorDocument 500 "500 internal server error"
+	ErrorDocument 404 "404 not found"
+	ErrorDocument 403 "403 forbidden access"
+	ErrorDocument 400 "400 bad request"
+	ErrorDocument 500 "500 internal server error"
