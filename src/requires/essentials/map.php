@@ -16,5 +16,11 @@ class Map
 	CONST DEFAULTMETA = __DIR__."/../metas/default.php";
 	// CONST NAVBAR = __DIR__."/../headers/navbar.php";
 }
+class Instance
+{
+	CONST USER_NAV = __DIR__."/../headers/userNav.php";
+	// CONST NAVBAR = __DIR__."/../headers/navbar.php";
+}
+
 
 ?>

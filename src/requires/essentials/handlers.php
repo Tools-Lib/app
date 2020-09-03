@@ -20,7 +20,6 @@ class Handlers
 			if(!Session::CheckToken()){
 				Session::Destroy(true, "/login");
 			}
-			// die(header("Location: /login"));
 		}
 	}
 
@@ -73,6 +72,24 @@ class Workers
 		}
 	}
 
+	public static function CheckUserPage() {
+		if(isset($_ENV['UserPage']) && $_ENV['UserPage']) {
+			return true;
+		}
+		else{
+			return false;
+		}		
+	}
+
+	public static function CheckUserInstance() {
+		if(isset($_ENV['UserInstance']) && $_ENV['UserInstance']) {
+			return true;
+		}
+		else{
+			return false;
+		}		
+	}
+
 	public static function CheckUserData() {
 		if(isset($_ENV['data']) && $_ENV['data'] != "" && $_ENV['data'] != null) {
 			return true;
@@ -83,21 +100,24 @@ class Workers
 	}
 
 	public static function User($scope = null) {
-		if (self::CheckUserData() && $scope == null) {
-			return $_ENV['data'];
+		switch ($scope) {
+			case $scope:
+				if(isset($_ENV['data']['body']['user'][$scope])) {
+					return htmlspecialchars($_ENV['data']['body']['user'][$scope]);
+				}
+			default:
+				return $_ENV['data'];
+				break;
 		}
-		elseif(self::CheckUserData() && $scope == "username") {
-			return $_ENV['data']['body']['user']['username'];
+	}
+
+	public static function ImportInstance($instance) {
+		if(self::CheckUserPage()) {
+			return require_once($instance);
 		}
-		elseif(self::CheckUserData() && $scope == "email") {
-			return $_ENV['data']['body']['user']['email'];
+		else {
+			return;
 		}
-		elseif(self::CheckUserData() && $scope == "last_login") {
-			return $_ENV['data']['body']['user']['last_login'];
-		}
-		elseif(self::CheckUserData() && $scope == "created") {
-			return $_ENV['data']['body']['user']['created_at'];
-		}		
 	}
 
 }

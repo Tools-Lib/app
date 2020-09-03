@@ -4,3 +4,26 @@
 * {
 	font-family: 'Helvetica Neue Thin';
 }
+.regular-input {
+	border-radius: 0px !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	background-color: transparent !important;
+	border-color: #333 !important;
+	box-shadow: 0px 1px 0px rgba(0,0,0,0.2) !important;
+	transition: 0.3s ease;
+}
+.regular-input:hover {
+	background-color: #1111111;
+	box-shadow: 0px 0px 2px rgba(0,0,0,0.5) !important;
+}
+.regular-input:focus {
+	outline: solid 0.1px !important;
+	box-shadow: 0px 2px 0px rgba(0,0,0,0.2) !important;
+}
+.regular-submit {
+	border-radius: 1px !important;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.45) !important;
+	text-transform: uppercase !important;	
+}

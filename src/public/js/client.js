@@ -59,6 +59,7 @@ var loader = `
 </g>
 </svg>
 `;
+
 function login() {
   $.ajax({
     url: "https://api.toolslib.co/accounts/login",

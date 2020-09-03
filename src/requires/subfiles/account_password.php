@@ -15,7 +15,7 @@ require_once(Map::HANDLERS);
 require_once(Map::CONFIG);
 require_once(Map::SESSIONS);
 
-$_ENV['page'] = "Profile"; // Page Name
+$_ENV['page'] = "Change Password"; // Page Name
 $_ENV['maintenance'] = False; // Maintenance mode
 $_ENV['UserPage'] = True;
 
