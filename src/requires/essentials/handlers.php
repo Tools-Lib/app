@@ -18,7 +18,15 @@ class Handlers
 		}
 		if(isset($_ENV['UserPage']) && $_ENV['UserPage']) {
 			if(!Session::CheckToken()){
-				Session::Destroy(true, "/login");
+				Session::Destroy(true, "/login?redirect=".urlencode($_SERVER['REQUEST_URI']));
+			}
+		}
+		if(isset($_GET['redirect'])) {
+			if($_GET['redirect'] == "") {
+				$this->Redirect(urlencode(strtok($_SERVER["REQUEST_URI"], '?')));
+			}
+			else {
+				$this->Redirect(urlencode($_GET['redirect']));
 			}
 		}
 	}
@@ -31,6 +39,17 @@ class Handlers
 		if(!in_array($_SERVER['HTTP_USER_AGENT'], Page::MAINTENANCE_UA)) {
 			http_response_code(503);
 			die("This page is not available due to maintenance improvments.");
+		}
+	}
+
+	private static function Redirect($encode, $tokenCheck = true) {
+		if($tokenCheck) {
+			if(Session::CheckToken()) {
+				header("Location:".urldecode($encode));
+			}
+		}
+		else {
+			header("Location:".urldecode($encode));
 		}
 	}
 
@@ -117,6 +136,15 @@ class Workers
 		}
 		else {
 			return;
+		}
+	}
+
+	public static function ReturnGETParamters($paramter) {
+		if (isset($_GET[$paramter])) {
+			return $_GET[$paramter];
+		}
+		else {
+			return false;
 		}
 	}
 

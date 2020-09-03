@@ -20,6 +20,7 @@ $_ENV['maintenance'] = False; // Maintenance mode
 
 new Handler();
 Session::CheckToken();
+
 ?>
 <html>
 <head>

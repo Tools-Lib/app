@@ -61,14 +61,11 @@ var loader = `
 `;
 
 function login() {
-  $.ajax({
-    url: "https://api.toolslib.co/accounts/login",
-    method: "post",
-    data: {
-      username: $("#user").val(),
-      password: $("#pass").val()
+  post("/accounts/login", {
+    username: $("#user").val(),
+    password: $("#pass").val()
     },
-    success: (data) => {
+    "").then((data) => {
       if(data.body.authinticated) {
         $("#logerr").html("");
         $("#submit").remove();
@@ -80,49 +77,138 @@ function login() {
       document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
       setTimeout(() => {}, 350);
       location.reload();
-      }
     }
-  }).fail(data => {
-      data = data.responseJSON
-      if(!data.body.authinticated) {
-        $("#logged").html("")
-        $("#logerr").html(data.body.errors[0].message);
-      }
+  }).catch(data => {
+    data = data.responseJSON
+    if(!data.body.authinticated) {
+      $("#logged").html("")
+      $("#logerr").html(data.body.errors[0].message);
+    }
   });
 }
 
 function register() {
-  $.ajax({
-    url: "https://api.toolslib.co/accounts/join",
-    method: "post",
-    data: {
-      email: $("#email").val(),
-      username: $("#user").val(),
-      password: $("#pass").val()
+  post("/accounts/join", {
+    email: $("#email").val(),
+    username: $("#user").val(),
+    password: $("#pass").val()
     },
-    success: (data) => {
-      if(data.body.authenticated) {
-        $("#logerr").html("");
-        $("#submit").remove();
-        $("#logged").html(loader);
-      var expires;
-        var date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toGMTString();
-      document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
-      setTimeout(() => {}, 350);
-      location.reload();
-      }
+    "",
+    {
+    cache: false,
+    timeout: 30000,
+  }).then((data) => {
+    if(data.body.authenticated) {
+      $("#logerr").html("");
+      $("#submit").remove();
+      $("#logged").html(loader);
+    var expires;
+      var date = new Date();
+      date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toGMTString();
+    document.cookie = escape("TL-TOKEN") + "=" + escape(data.body.token) + expires + "; path=/";
+    setTimeout(() => {}, 350);
+    location.reload();
+  }
+  }).catch(data => {
+    data = data.responseJSON
+    if(!data.body.authenticated) {
+      $("#logged").html("")
+      $("#logerr").html(data.body.errors[0].message);
     }
-  }).fail(data => {
-      data = data.responseJSON
-      if(!data.body.authenticated) {
-        $("#logged").html("")
-        $("#logerr").html(data.body.errors[0].message);
-      }
   });
 }
 
+function setCookie(name, value) {
+  var expires;
+        var date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toGMTString();
+      document.cookie = escape(name) + "=" + escape(value) + expires + "; path=/";
+
+}
+
+function edit() {
+  post("/accounts/edit", {
+    email: $("#email").val(),
+    username: $("#username").val(),
+    name: $("#name").val(),
+    bio: $("#bio").val()
+    },
+    getCookie("TL-TOKEN"),
+    {
+    cache: false,
+    timeout: 30000,
+  }).then((data) => {
+    $("#error").html("");
+    $("#success").html("Account updated");
+  }).catch(data => {
+    data = data.responseJSON
+      $("#success").html("");
+      $("#error").html(data.body.errors[0].message);
+  });
+}
+function changepassword() {
+  post("/accounts/edit", {
+      password: $("#password").val(),
+      old_password: $("#old_password").val(),
+      verify_password: $("#verify_password").val()
+    },
+    getCookie("TL-TOKEN"),
+    {
+    cache: false,
+    timeout: 30000,
+  }).then((data) => {
+        $("#errorpassw").html("");
+        $("#successpassw").html("Password changed");
+  }).catch(data => {
+      data = data.responseJSON
+        $("#successpassw").html("");
+        $("#errorpassw").html(data.body.errors[0].message);
+  });
+}
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function get(path="/", data={}, token="/") {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: "https://api.toolslib.co" + path,
+      method: "get",
+      data,
+      success: (data) => {
+        return resolve(data);
+      },
+      headers: {
+      	"X-AccessToken": token
+      },
+    }).fail(data => {
+        return resolve(data);
+    });
+  });
+}
+
+function post(path="/", data={}, token="/", other={}) {
+  return new Promise(function(resolve, reject) {
+    $.ajax({
+      url: "https://api.toolslib.co" + path,
+      method: "post",
+      data,
+      success: (data) => {
+        return resolve(data);
+      },
+      headers: {
+      	"X-AccessToken": token
+      },
+      ...other
+    }).fail(data => {
+        return resolve(data);
+    });
+  });
+}
 
 
 try {
@@ -130,7 +216,7 @@ document.querySelector('#formLogin').addEventListener('keyup', function (e) {
   if (e.key == "Enter") {
     login();
   }
-})    
+})
 }
 catch(e){}
 try{
@@ -138,6 +224,6 @@ try{
   if (e.key == "Enter") {
     register();
   }
-})  
+})
 }
 catch(e){}

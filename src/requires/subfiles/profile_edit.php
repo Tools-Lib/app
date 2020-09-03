@@ -50,74 +50,18 @@ new Handler();
 			<div class="col-12 col-md-4 col-lg-4 mr-0 mr-md-4 mr-lg-4 form-group h-50 bg-white p-5 text-dark" style="border-radius: 2px;">
 				<h4>Change Password</h4>
 				<p id="errorpassw" class="text-danger"></p>
-				<p id="successpassw" class="text-success"></p>				
+				<p id="successpassw" class="text-success"></p>
 				<input type="password" id="old_password" placeholder="Old Password" class="form-control regular-input mb-3">
 				<input type="password" id="password" placeholder="New Password" class="form-control regular-input mb-3">
 				<input type="password" id="verify_password" placeholder="Confirm New Password" class="form-control regular-input mb-3">
 				<input type="submit" id="submit" onclick="changepassword();" class="regular-submit btn btn-success btn-md">
-			</div>				
+			</div>
 		</div>
 	</div>
 
 
 <script type="text/javascript">
-function edit() {
-  $.ajax({
-    url: "https://api.toolslib.co/accounts/edit",
-    method: "post",
-    dataType: "json",
-    data: {
-      email: $("#email").val(),
-      username: $("#username").val(),
-      name: $("#name").val(),
-      bio: $("#bio").val() 
-    },
-    cache: false,
-    timeout: 30000,    
-    headers: {
-    	"X-AccessToken": getCookie("TL-TOKEN"),
-    	"Access-Control-Allow-Origin": "*"
-    },
-    success: (data) => {
-        $("#error").html("");
-        $("#success").html("Account updated");
-    }
-  }).fail(data => {
-      data = data.responseJSON
-        $("#success").html("");
-        $("#error").html(data.body.errors[0].message);
-  });
-}
-function changepassword() {
-  $.ajax({
-    url: "https://api.toolslib.co/accounts/edit",
-    method: "post",
-    dataType: "json",
-    data: {
-      password: $("#password").val(),      
-      old_password: $("#old_password").val(),
-      verify_password: $("#verify_password").val()
-    },
-    cache: false,
-    timeout: 30000,    
-    headers: {
-    	"X-AccessToken": getCookie("TL-TOKEN")
-    },    
-    success: (data) => {
-        $("#errorpassw").html("");
-        $("#successpassw").html("Password changed");
-    }
-  }).fail(data => {
-      data = data.responseJSON
-        $("#successpassw").html("");
-        $("#errorpassw").html(data.body.errors[0].message);
-  });
-}
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
+
 </script>
 </body>
 </html>

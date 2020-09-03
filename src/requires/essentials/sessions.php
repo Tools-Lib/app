@@ -76,12 +76,12 @@ class Sessions
 		if (Worker::CheckTokenCookie()) {
 
 			self::GenerateSessionToken();
-			die(header("location:/@me"));
+			die(header("location:/user/@me?redirect=".urlencode(Worker::ReturnGETParamters('redirect'))));
 
 		}
 		else {
 			self::Destroy();
-			header("Location:/login");
+			header("Location:/login?redirect=".urlencode(Worker::ReturnGETParamters('redirect')));
 		}
 
 	}

@@ -19,7 +19,6 @@ $_ENV['maintenance'] = False; // Maintenance mode
 $_ENV['UserPage'] = True;
 
 new Handler();
-
 ?>
 <html>
 <head>
@@ -37,7 +36,6 @@ new Handler();
 	} ?> -->
 
 	<a href="/@me/edit" class="btn btn-primary btn-sm">Edit Profile</a>
-	<a href="/@me/password" class="btn btn-primary btn-sm">Change Password</a>
 
 </body>
 </html>
